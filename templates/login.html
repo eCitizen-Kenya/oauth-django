@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1 class="text-center fs-2">Login Page</h1>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'login_sso' %}">
+            <button class="btn btn-success">Login with eCitizen</button>
+        </a>
+    </div>
+</div>
+{% endblock content %}

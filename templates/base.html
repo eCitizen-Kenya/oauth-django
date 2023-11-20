@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+{% load django_bootstrap5 %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block styles %}
+    {% bootstrap_css %}
+    {% endblock styles %}
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    {% endblock content %}
+
+    {% block scripts %}
+    {% bootstrap_javascript %}
+    {% endblock scripts %}
+</body>
+
+</html>
