@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 from .models import CustomUser
 
 
@@ -13,7 +12,7 @@ def login_page(request):
 
 
 def login_sso(request):
-    return HttpResponseRedirect(settings.ECITIZEN_LOGIN_URI)
+    return redirect(to=settings.ECITIZEN_LOGIN_URI)
 
 
 def login_sso_code(request):
@@ -37,7 +36,7 @@ def login_sso_code(request):
     )
 
     user_info = get_user_info.json()
-    CustomUser.objects.update_or_create(
+    updated_user = CustomUser.objects.update_or_create(
         email=user_info["email"],
         id_number=user_info["id_number"],
         account_type=user_info["account_type"],
@@ -62,3 +61,9 @@ def login_sso_code(request):
 @login_required(login_url="login")
 def homepage(request):
     return render(request, "home.html")
+
+
+@login_required(login_url="login")
+def logout_user(request):
+    logout(request)
+    return redirect("login")
